@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+/* Ensure this file is included in your project */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.content {
+  height: 200vh; /* For demonstration purposes, to show scrolling */
+  background-color: #f8f8f8;
+  padding-top: 100vh; /* Offset the content to start below the initial view */
+}
