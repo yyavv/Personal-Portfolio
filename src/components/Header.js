@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Resume from "../assets/Yavuz_Celik.pdf";
+import SearchHighlight from "./SearchHighlight";
 
 const Header = () => {
+  const location = useLocation();
+
   const [showHeader, setShowHeader] = useState(true);
   let lastScrollY = window.scrollY;
 
@@ -21,6 +24,15 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   return (
     <header
@@ -56,25 +68,8 @@ const Header = () => {
             Contact
           </Link>
         </nav>
-        <div className="flex items-center space-x-3">
-          <form className="relative">
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <input
-              id="search"
-              type="text"
-              className="rounded-full py-2 px-4 bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Search..."
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-indigo-500 text-white rounded-full p-1 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              aria-label="Search"
-            >
-              🔍
-            </button>
-          </form>
+        <div className="flex items-center space-x-3 justify-center">
+          <SearchHighlight />
           <a
             href={Resume} //path to your resume
             download="resume.pdf"
