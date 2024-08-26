@@ -7,6 +7,7 @@ module.exports = {
         "custom-blue": "#2E294E",
         "custom-orange": "#F46036",
         "custom-green": "#1B998B",
+        highlight: "#FFFF00", // Yellow highlight color
       },
     },
   },
